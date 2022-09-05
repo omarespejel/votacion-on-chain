@@ -1,0 +1,17 @@
+["protostar.config"]
+protostar_version = "0.3.2"
+
+["protostar.project"]
+libs_path = "lib"
+
+["protostar.contracts"]
+voters = ["src/voters.cairo",]
+
+[profile.devnet.protostar.deploy]
+gateway-url="http://127.0.0.1:5050/"
+
+[profile.testnet.protostar.deploy]
+network="alpha-goerli"
+
+[profile.mainnet.protostar.deploy]
+network="alpha-mainnet"
