@@ -17,7 +17,7 @@ from src.utils import assert_permitido_votar, assert_did_not_vote
 # @implicit range_check_ptr
 # @param vote (felt): voto 0 o 1
 @external
-func vote{
+func votar{
     syscall_ptr : felt*,
     pedersen_ptr : HashBuiltin*,
     range_check_ptr
@@ -29,14 +29,14 @@ func vote{
     assert_permitido_votar(info)
     assert_did_not_vote(info)
 
-    # Marcar que el votante ya votón y actualizar en el storage
+    # Marcar que el votante ya votó y actualizar en el storage
     let info_actualizada = InfoVotante(
         ya_voto=1,
         permitido_votar=1,
     )
     info_votante.write(caller, info_actualizada)
 
-    # Actualizar el estado de la votación con el nuevo voto
+    # Actualizar el conteo de votos con el nuevo voto
     let (state) = estado_votacion.read()
     local estado_votacion_actualizada : ConteoVotos
     if vote == 0:
